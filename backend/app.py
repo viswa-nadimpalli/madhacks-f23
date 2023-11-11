@@ -8,7 +8,7 @@ from tempfile import NamedTemporaryFile
 app = Flask(__name__)
 
 # Set the path to the Tesseract OCR executable
-pytesseract.pytesseract.tesseract_cmd = '/Users/kanishk/Desktop/school/madhacks-f23/backend/tesseract/5.3.3/bin/tesseract'
+pytesseract.pytesseract.tesseract_cmd = 'backend/tesseract/5.3.3/bin/tesseract'
 
 @app.route('/test', methods=['POST'])
 def extract():
