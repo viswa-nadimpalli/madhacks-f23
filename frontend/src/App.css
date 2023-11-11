@@ -1,20 +1,35 @@
+
 .App {
   text-align: center;
   font-size: calc(10px + 8vmin);
-  padding: 5%
+  padding: 5%;
+  max-width: 100vw;
+  transform: translateY(10%);
 }
+
 
 .Info {
   display: flex;
+  width: 100%;
   flex-direction: row;
-  width: 70vw;
   justify-content: space-around;
   align-items: center;
+  font-family: "Ubuntu";
+  opacity: 100;
 }
 
-.logIn {
+.login {
   height: 5vh;
+  margin-top: 1%;
+  border-radius: 10px;
+  /* margin-right: 20%; */
+  border: 0;
+  font-size: calc(10px + 2vmin);
   width: 15vw;
+  opacity: 0;
+  transform: translateY(10%);
+  font-family: "Ubuntu300";
+  font-weight: 300;
 }
 
 html {
@@ -23,11 +38,48 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  width: 100vw;
+  max-width: 100vw;
 }
 
+h1 {
+  font-size: 7rem;
+}
 
 .App-header {
   color: white;
+  opacity: 0;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.subtext {
+  color: white;
+  opacity: 0;
+  font-size: calc(10px + 1.75vmin);
+  margin-bottom: 0;
+}
+
+.App {
+  transition: all 0.5s ease;
+}
+
+.App-header,
+.login,
+.subtext {
+  transition: all 0.5s ease;
+}
+
+.App-header.rise-up,
+.login.button-animate,
+.subtext.stanimate {
+  transform: translateY(-10vh);
+  opacity: 100;
+}
+
+.login.button-animate {
+  transition-delay: 0.3s; /* Adjust the delay value as needed */
+}
+
+.subtext.stanimate {
+  transition-delay: 0.2s;
 }
