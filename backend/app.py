@@ -41,7 +41,12 @@ def extract_text_image():
         # Extract text using Tesseract OCR
         text = pytesseract.image_to_string(image)
         os.remove(temp_file_path)
-        return jsonify({'text': text})
+        # return jsonify({'text': text})
+        with open("output.txt", 'w') as output:
+            # Write the string to the file
+            output.write(text)
+
+        return output
 
     except Exception as e:
         return jsonify({'error': f'Error processing PDF: {str(e)}'})
@@ -58,8 +63,14 @@ def extract_text_pdf():
 
         # Extract text from the PDF
         text = pdf_to_text(pdf_path)
+        os.remove(pdf_path)
 
-        return jsonify({"text": text})
+        with open("output.txt", 'w') as output:
+            # Write the string to the file
+            output.write(text)
+
+        return output
+        # return jsonify({"text": text})
     
     except Exception as e:
         return jsonify({"error": str(e)})
