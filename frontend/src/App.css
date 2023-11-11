@@ -4,9 +4,27 @@
   padding: 5%
 }
 
+.Info {
+  display: flex;
+  flex-direction: row;
+  width: 70vw;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.logIn {
+  height: 5vh;
+  width: 15vw;
+}
+
 html {
   background-image: linear-gradient(to bottom right, rgb(79 70 229), rgb(124 58 237));
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
 }
 
 
