@@ -4,6 +4,7 @@ import pytesseract
 import os
 from PIL import Image
 from tempfile import NamedTemporaryFile
+import fitz
 
 app = Flask(__name__)
 
@@ -14,8 +15,8 @@ pytesseract.pytesseract.tesseract_cmd = 'backend/tesseract/5.3.3/bin/tesseract'
 def extract():
     return "hello"
 
-@app.route('/api/extract_text', methods=['POST'])
-def extract_text():
+@app.route('/api/extract_text_image', methods=['POST'])
+def extract_text_image():
     # Check if a file is present in the request
     # print(request.files.keys)
     if 'file' not in request.files:
@@ -44,6 +45,33 @@ def extract_text():
 
     except Exception as e:
         return jsonify({'error': f'Error processing PDF: {str(e)}'})
+    
+@app.route('/api/extract_text_pdf', methods=['POST'])
+def extract_text_pdf():
+    try:
+        # Assuming you're sending a PDF file in the request
+        uploaded_file = request.files['file']
+        
+        # Save the uploaded file
+        pdf_path = 'uploaded_file.pdf'
+        uploaded_file.save(pdf_path)
+
+        # Extract text from the PDF
+        text = pdf_to_text(pdf_path)
+
+        return jsonify({"text": text})
+    
+    except Exception as e:
+        return jsonify({"error": str(e)})
+
+def pdf_to_text(pdf_path):
+    text = ""
+    with fitz.open(pdf_path) as pdf_document:
+        for page_number in range(pdf_document.page_count):
+            page = pdf_document[page_number]
+            text += page.get_text()
+
+    return text
 
 if __name__ == '__main__':
     app.run(debug=True)
