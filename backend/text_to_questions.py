@@ -1,7 +1,14 @@
-from openai import OpenAI
-import sys
+from dotenv import load_dotenv
+load_dotenv()
 
-client = OpenAI(api_key="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")
+from openai import OpenAI
+
+import sys
+import os
+
+openai_api_key = os.getenv("OPENAI_API_KEY")
+
+client = OpenAI(api_key = os.getenv("OPENAI_API_KEY"))
 
 with open('output.txt', 'r', encoding='utf-8') as file:
     content = file.read()
