@@ -203,4 +203,5 @@ h1 {
   white-space: pre-line;
   color: white;
   font-family: "Ubuntu";
+  overflow: scroll;
 }

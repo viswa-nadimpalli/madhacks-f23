@@ -74,7 +74,7 @@ const ImageUploader = () => {
           document.getElementById('just-line-break').innerHTML = "PDF Success!"
           // document.getElementById("downloadButton").style.visibility="‌​visible";
         } else {
-          document.getElementById('just-line-break').innerHTML = data +""
+          document.getElementById('just-line-break').innerHTML = data.split("Answers:")[0] +""
         }
         
       //   setUploadStatus(data+"");
