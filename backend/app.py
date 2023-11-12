@@ -75,6 +75,7 @@ def extract():
 
 @app.route('/api/extract_text/<type>', methods=['POST'])
 def extract_text(type):
+
     file = request.files['file']
     if '.pdf' in file.filename:
         try:
@@ -121,7 +122,6 @@ def extract_text(type):
                 file.save(temp_file.name)
                 temp_file_path = temp_file.name
 
-        # Convert PDF to images using pdf2image
         # images = convert_from_bytes(open(temp_file_path, 'rb').read(), 500)  # Set the DPI as needed
             image = Image.open(temp_file_path)
         # Extract text using Tesseract OCR
@@ -134,14 +134,11 @@ def extract_text(type):
         # if not os.path.exists(file_path):
         #     return jsonify({'error': 'File not found'})
 
-        # Perform OCR using Tesseract
-        # extracted_text = pytesseract.image_to_string(Image.open(file_path))
         # with open("output.txt", 'w') as output:
         #     # Write the string to the file
         #     output.write(extracted_text)
 
         # return output
-        # return jsonify(extracted_text)
 
         except Exception as e:
             return jsonify({'error': f'Error processing image: {str(e)}'})
