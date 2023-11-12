@@ -19,7 +19,7 @@ const App = () => {
     return(
       <div className='bod'>
       <div className="loading-container loadanimate">
-        <div className="loading-spinner">Loading<span className="ellipsis">...</span></div>
+        <div className="loading-spinner">Loading</div>
       </div>
       </div>
     );
