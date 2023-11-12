@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import './quiz.css'
 import './fonts/Ubuntu/Ubuntu-Bold.ttf';
 
@@ -14,6 +15,8 @@ const QuizGenerator: React.FC = () => {
   const [numMultipleChoice, setNumMultipleChoice] = useState<number>(0);
   const [numShortAnswer, setNumShortAnswer] = useState<number>(0);
   const [quizQuestions, setQuizQuestions] = useState<QuizQuestion[]>([]);
+  const { data } = useParams();
+  
 
 
 
@@ -61,7 +64,8 @@ const QuizGenerator: React.FC = () => {
 
         <div>
             <h2>Generated Quiz:</h2>
-            <ul>
+            <p>{data}</p>
+            {/* <ul>
             {quizQuestions.map((question) => (
                 <li key={question.id}>
                 {`Q${question.id}: ${question.question} (${question.type})`}
@@ -74,7 +78,7 @@ const QuizGenerator: React.FC = () => {
                 )}
                 </li>
             ))}
-            </ul>
+            </ul> */}
         </div>
         </div>
     </div>
