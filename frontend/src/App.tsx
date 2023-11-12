@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Routes  } from 'react-router-dom'
 import FirstPage from './Firstpage'
 import SecondPage from './ImageUploader'
+import Test from "./test"
 import Quiz from './Quiz'
 import Authy from './authy'
 import './App.css';
@@ -61,6 +62,7 @@ const App = () => {
           <Route path="/" element={<SecondPage/>} />
           <Route path="/info" element={<SecondPage/>} />
           <Route path="/home" element={<FirstPage/>} />
+          <Route path="/test" element={<Test/>} />
           <Route path="/quiz" element={<Quiz/>} />
         </Routes >
       </Router>
@@ -75,6 +77,7 @@ const App = () => {
         <Route path="/" element={<FirstPage/>} />
         <Route path="/info" element={<SecondPage/>} />
         <Route path="/home" element={<FirstPage/>} />
+        <Route path="/test" element={<Test/>} />
         <Route path="/quiz" element={<Quiz/>} />
       </Routes >
     </Router>

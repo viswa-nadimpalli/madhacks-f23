@@ -99,7 +99,10 @@ const ImageUploader = () => {
           dlbtn && dlbtn.classList.remove('gone')
           // document.getElementById("downloadButton").style.visibility="‌​visible";
         } else {
-          document.getElementById('just-line-break').innerHTML = data +""
+          // document.getElementById('just-line-break').innerHTML = data +""
+          document.getElementById("just-line-break").innerHTML = "Done!!!";
+          var encodedData = encodeURIComponent(dataExp);
+          window.location.href = 'test.tsx?data=' + encodedData;
         }
         
       //   setUploadStatus(data+"");
