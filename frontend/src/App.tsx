@@ -23,7 +23,35 @@ const App = () => {
       </div>
     );
   }
-
+  const updateDB = async () => {
+    try {
+      const username = user?.name;
+      const id = user?.sub;
+      // URL of your Flask API endpoint
+      const apiUrl = `http://127.0.0.1:5000/api/newUser/${username}/${id}`;
+      // setUploadStatus(`Upload 3 failed. Error: `);
+      // File path to be sent in the POST request
+  
+  
+      // Make the POST request
+      let sends = 0;
+      if (sends === 0){ 
+      const response = await fetch(apiUrl, {
+        method: "POST"
+      })
+      console.log(response);
+      sends += 1;
+    }
+    }
+    catch {
+      console.log('damn');
+    }
+    };
+  
+    if (isAuthenticated && user) {
+      const val = updateDB();
+      console.log(val)
+    }
 
   if (isAuthenticated && user) {
     return (

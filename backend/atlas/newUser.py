@@ -2,16 +2,19 @@ import pymongo
 from pymongo import MongoClient
 import datetime
 import connect
+from flask import Flask, request, jsonify, send_file
+from flask_cors import CORS
 
+app = Flask(__name__)
+CORS(app)
 
-client = connect.getClient()
+@app.route('/api/newUser/<InputName>/<userID>', methods=['POST'])
 
-db = client['madhacks']
-
-
-people = db.people
 
 def newUser(InputName, userID):
+    client = connect.getClient()
+    db = client['madhacks']
+    people = db.people
     fname, lname = InputName.split()
     if people.find_one({ "name.last": lname, "name.first": fname }) == None:
         personDocument = {
@@ -19,7 +22,8 @@ def newUser(InputName, userID):
         "id": userID,
         }
         people.insert_one(personDocument)
-        return 1
-    return 0
+        return "1"
+    return "0"
 
-print(newUser("Henry Olig", 39))
+if __name__ == '__main__':
+    app.run(debug=True)

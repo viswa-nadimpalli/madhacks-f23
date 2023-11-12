@@ -23,6 +23,7 @@ import { Link } from 'react-router-dom'
 const Login = () => {
   const { loginWithPopup, isAuthenticated, user } = useAuth0();
 
+
   useEffect(() => {
     // Add the "animated" and "rise-up" classes on mount
     const info = document.querySelector('.Info');

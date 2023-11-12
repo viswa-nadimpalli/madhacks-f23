@@ -16,7 +16,7 @@ def getUser(InputName):
     fname, lname = InputName.split()
     return people.find_one({ "name.last": lname, "name.first": fname })
 
-print(getUser("Henry Olig"))
+
 
 # personDocument = {
 #   "name": { "first": "Alan", "last": "Turing" },

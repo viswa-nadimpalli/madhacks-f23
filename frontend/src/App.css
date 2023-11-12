@@ -59,7 +59,7 @@
 }
 
 html {
-  background-image: linear-gradient(to bottom right, rgb(79 70 229), rgb(124 58 237));
+  background-image: linear-gradient(to bottom right, rgb(62, 55, 189), rgb(142, 87, 237));
   height: 100vh;
   display: flex;
   flex-direction: column;
