@@ -4,7 +4,7 @@ import React, { useState } from "react";
 const ImageUploader = () => {
   const [uploadStatus, setUploadStatus] = useState(""); // State to track upload status
   const [selectedFile, setSelectedFile] = useState(null);
-  
+
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
@@ -23,7 +23,7 @@ const ImageUploader = () => {
       // const filePath = "frontend/testing.png";
 
       if (!file) {
-        setUploadStatus("Please select a file.");
+        setUploadStatus("No file chosen.");
         return;
       }
 
