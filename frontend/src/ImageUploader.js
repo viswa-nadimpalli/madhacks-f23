@@ -112,23 +112,36 @@ const ImageUploader = () => {
   };
 
 
-  const { isAuthenticated, user } = useAuth0();
+  const { isAuthenticated, user, isLoading } = useAuth0();
+
+  if (isLoading) {
+    const loading = document.querySelector('.loading-container');
+    loading && loading.classList.add('loadanimate');
+
+    return(
+      <div className='bod'>
+      <div className="loading-container loadanimate">
+        <div className="loading-spinner">Loading</div>
+      </div>
+      </div>
+  );
+    }
 
   if (!user || !isAuthenticated) {
     window.location.href = '/';
   }
-      
-    
-                {/* <FileUploader handleChange={handleFileChange} name="file" types={fileTypes} /> */}
-
+  else {
+    const passed = user.name
+  }
   
     return (
       <div className="wrapper">
       <div className="uploadPage">
       <h1>Welcome, {user.name.split(' ')[0]}</h1>
-        <input className="fileBtn" type="file" id="fileInput" onChange={handleFileChange}/>        <div class="dropdown">
+        <input className="fileBtn" type="file" id="fileInput" onChange={handleFileChange}/>        
+        <div className="dropdown">
           <button id="dropdown">Options</button>
-          <div class="dropdown-content">
+          <div className="dropdown-content">
             <a href="#" onClick={click1}>True or False</a>
             <a href="#" onClick={click2}>Multiple Choice</a>
             <a href="#" onClick={click3}>Short Answer</a>
