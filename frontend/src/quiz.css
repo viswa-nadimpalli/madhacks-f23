@@ -1,0 +1,104 @@
+@font-face {
+    font-family: "Ubuntu";
+    src: local("Ubuntu"),
+     url("./fonts/Ubuntu/Ubuntu-Bold.ttf") format("truetype");
+    font-weight: bold;
+   }
+  
+  @font-face {
+    font-family: "Ubuntu300";
+    src: local("Ubuntu300"),
+     url("./fonts/Ubuntu/Ubuntu-Light.ttf") format("truetype");
+    font-weight: bold;
+  }
+
+html{
+    display: block;
+    color: white;
+    font-family: 'Ubuntu';
+}
+
+
+.top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: linear-gradient(to top left, rgb(62, 55, 189), aquamarine);
+    height: 100vh;
+    opacity: 0;
+    animation: nowvis 1s ease-in;
+    animation-fill-mode: forwards;
+}
+
+@keyframes nowvis {
+
+    to {
+        opacity: 100;
+    }
+    
+}
+
+
+.genButton {
+    margin-top: 4vh;
+}
+
+h1 {
+    font-size: 6vw;
+    margin-bottom: 4%;
+}
+
+label {
+    font-size: 3vw;
+}
+
+input {
+    font-size: 3vw;
+    padding: 3%;
+    border-radius: 50px;
+    margin-bottom: 3%;
+}
+
+button {
+    font-size: 3vw;
+}
+
+
+
+/* 
+:root{
+    --overlay-color-1: rgb(129, 26, 207);
+    --overlay-color-2: #171778;
+    --anim-duration: 15s;
+}
+
+#gradient {
+    opacity: 0.8;
+    background: none;
+}
+
+#gradient:after,
+#gradient:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+}
+
+#gradient:before {
+    background: linear-gradient(135deg, var(--overlay-color-2) 0%, var(--overlay-color-1) 100%);
+    animation: OpacityAnim var(--anim-duration) ease-in-out 0s infinite alternate;
+}
+
+#gradient:after {
+    background: linear-gradient(135deg, var(--overlay-color-1) 0%, var(--overlay-color-2) 100%);
+    animation: OpacityAnim var(--anim-duration) ease-in-out calc(-1 * var(--anim-duration)) infinite alternate;
+}
+
+@keyframes OpacityAnim {
+    0%{opacity: 1.0}
+    100%{opacity: 0.0}
+} */
+
