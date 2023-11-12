@@ -27,7 +27,9 @@ else:
     print("Invalid Input")
     sys.exit(1)
 
-prompt += " Separate the questions and answers with a questions section, starting with 'Questions:', and an answers section, starting with 'Answers:'."
+question_amount = input("Enter the number of questions you want: ")
+
+prompt += " Separate the questions and answers with a questions section, starting with 'Questions:', and an answers section, starting with 'Answers:'. Please generate " + question_amount + " questions."
 
 print(prompt + "\n\n\n")
 
