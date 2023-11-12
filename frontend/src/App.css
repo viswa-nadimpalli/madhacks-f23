@@ -45,6 +45,12 @@
   cursor: pointer;
 }
 
+.logo {
+  /* transform: translateY(-8vh); */
+  width: 50vw;
+  opacity: 0;
+}
+
 .uploadStatus {
   margin-top: 3vh;
   font-size: calc(10px + 1vmax);
@@ -100,7 +106,8 @@ h1 {
 .App-header,
 .login,
 .subtext,
-.userinfo {
+.userinfo,
+.logo {
   transition: all 0.5s ease;
 }
 
@@ -108,10 +115,12 @@ h1 {
 .login.button-animate,
 .subtext.stanimate,
 .userinfo.usanimate,
-.startedbtn.button-animate {
+.startedbtn.button-animate,
+.logo.rise-up {
   transform: translateY(-10vh);
   opacity: 100;
 }
+
 
 .login.button-animate {
   transition-delay: 0.3s; /* Adjust the delay value as needed */
