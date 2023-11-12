@@ -66,8 +66,8 @@ const ImageUploader = () => {
   
   return (
     <div className="uploadPage">
-      <input className="uploadPage" type="file" id="fileInput" onChange={handleFileChange}/>
-      <button className="uploadPage" onClick={handleUploadClick}>Upload Image</button>
+      <input className="uploadButton" type="file" id="fileInput" onChange={handleFileChange}/>
+      <button className="uploadButton" onClick={handleUploadClick}>Upload Image</button>
       {/* <p>{uploadStatus}</p> */}
       <div className="uploadPage" id="just-line-break"></div>
     </div>
