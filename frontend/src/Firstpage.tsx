@@ -31,7 +31,7 @@ const Login = () => {
     const lgbutton = document.querySelector('.login');
     const st = document.querySelector('.subtext');
     const logoimg = document.querySelector('.logo');
-    logoimg && logoimg.classList.add('rise-up')
+    logoimg && logoimg.classList.add('rise-up');
     info && info.classList.add('animated');
     text && text.classList.add('rise-up');
     lgbutton && lgbutton.classList.add('button-animate');
@@ -52,7 +52,7 @@ const Login = () => {
         <div className='text'>
             <h2 className="App-header">Jotter</h2>
             <p className='subtext'>Your information assistant</p>
-            <button className='login' onClick={() => loginWithPopup()}><b>Log In</b></button>
+            <button className='login' onClick={() => loginWithRedirect()}><b>Log In</b></button>
           {/* <Link to="/info">Click Here!</Link> */}
         </div>
         <img className='logo' src={logo} alt='icon'/>
