@@ -12,8 +12,11 @@ const App = () => {
   const { loginWithRedirect, isAuthenticated, user, isLoading } = useAuth0();
 
   if (isLoading) {
+    const loading = document.querySelector('.loading-container');
+    loading && loading.classList.add('loadanimate');
+
     return(
-      <div className="loading-container">
+      <div className="loading-container loadanimate">
         <div className="loading-spinner">Loading<span className="ellipsis">...</span></div>
       </div>
     );

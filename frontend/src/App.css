@@ -65,6 +65,7 @@ html {
   flex-direction: column;
   justify-content: center;
   max-width: 100vw;
+  overflow: hidden;
 }
 
 h1 {
@@ -112,17 +113,9 @@ h1 {
   opacity: 100;
 }
 
-.login.gone {
-  transform: translateX(-10vh);
-  opacity: 0;
-}
-
-.login.button-animate,
-.startedbtn.button-animate {
+.login.button-animate {
   transition-delay: 0.3s; /* Adjust the delay value as needed */
 }
-
-
 
 .subtext.stanimate {
   transition-delay: 0.2s;

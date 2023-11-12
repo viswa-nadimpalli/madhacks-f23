@@ -23,3 +23,28 @@
         transform: translateY(-1.2em);
       }
   }
+.loading-container {
+  transition: all 0.5s ease;
+}
+
+
+.loading-container.loadanimate {
+  animation: loadinganimation 2s infinite;
+}
+
+@keyframes loadinganimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.login.button-animate {
+  transition-delay: 0.3s; /* Adjust the delay value as needed */
+}
+
+.subtext.stanimate {
+  transition-delay: 0.2s;
+}
