@@ -117,24 +117,16 @@ const ImageUploader = () => {
   if (!user || !isAuthenticated) {
     window.location.href = '/';
   }
+      
+    
+                {/* <FileUploader handleChange={handleFileChange} name="file" types={fileTypes} /> */}
 
   
     return (
       <div className="wrapper">
       <div className="uploadPage">
-        <h1>Welcome, {user.name.split(' ')[0]}</h1>
-        <input className="fileBtn" type="file" id="fileInput" onChange={handleFileChange}/>
-        {/* <FileUploader handleChange={handleFileChange} name="file" types={fileTypes} /> */}
-        <div className="dropdown">
-          <button id="dropdown">Options</button>
-          <div className="dropdown-content">
-
-  
-    return (
-      <div className="uploadPage">
-
-        <input className="uploadButton" type="file" id="fileInput" onChange={handleFileChange}/>
-        <div class="dropdown">
+      <h1>Welcome, {user.name.split(' ')[0]}</h1>
+        <input className="fileBtn" type="file" id="fileInput" onChange={handleFileChange}/>        <div class="dropdown">
           <button id="dropdown">Options</button>
           <div class="dropdown-content">
             <a href="#" onClick={click1}>True or False</a>
