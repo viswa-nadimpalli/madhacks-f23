@@ -32,6 +32,7 @@
   animation: loadinganimation 2s infinite;
 }
 
+
 @keyframes loadinganimation {
   from {
     transform: rotate(0deg);
