@@ -92,9 +92,9 @@ const ImageUploader = () => {
       <div className="uploadPage">
 
         <input className="uploadButton" type="file" id="fileInput" onChange={handleFileChange}/>
-        <div class="dropdown">
+        <div className="dropdown">
           <button id="dropdown">Options</button>
-          <div class="dropdown-content">
+          <div className="dropdown-content">
             <a href="#" onClick={click1}>True or False</a>
             <a href="#" onClick={click2}>Multiple Choice</a>
             <a href="#" onClick={click3}>Short Answer</a>
