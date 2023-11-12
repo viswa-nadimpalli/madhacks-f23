@@ -6,6 +6,7 @@ import userEvent from "@testing-library/user-event";
 import { FileUploader } from "react-drag-drop-files";
 
 const fileTypes = ["JPG", "PNG", "PDF"];
+dataExp;
 
 var type1 = "0";
 const ImageUploader = () => {
@@ -91,7 +92,7 @@ const ImageUploader = () => {
       
       // Check if the request was successful (status code 2xx)
       if (response.ok) {
-        const data = await response.text();
+        dataExp = await response.text();
         if (type1=="4"){
           document.getElementById('just-line-break').innerHTML = "PDF Success!"
 
