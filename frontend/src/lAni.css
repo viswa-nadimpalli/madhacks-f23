@@ -1,0 +1,25 @@
+/* YourComponent.css */
+.loading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  .loading-spinner {
+    color: white;
+    font-size: 4vmax;
+    font-family: "Ubuntu";
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .ellipsis {
+    animation: ellipsis-animation 1s infinite steps(4);
+  }
+  
+  @keyframes ellipsis-animation {
+    to {
+        transform: translateY(-1.2em);
+      }
+  }

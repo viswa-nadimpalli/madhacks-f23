@@ -20,9 +20,8 @@ import { Link } from 'react-router-dom'
 //   return <button onClick={() => loginWithRedirect()}>Log In</button>;
 // };
 
-
 const Login = () => {
-  const { loginWithRedirect } = useAuth0();
+  const { loginWithPopup, isAuthenticated, user } = useAuth0();
 
   useEffect(() => {
     // Add the "animated" and "rise-up" classes on mount
@@ -33,19 +32,24 @@ const Login = () => {
     info && info.classList.add('animated');
     text && text.classList.add('rise-up');
     lgbutton && lgbutton.classList.add('button-animate');
-    st && st.classList.add('stanimate')
+    st && st.classList.add('stanimate');
   }, []); // Run the effect only once on mount
 
+
+  // let userInfo = <h2 className='userinfo'>Buffer </h2>;
+  // if (user && isAuthenticated) {
+  //   userInfo = <h2 className='userinfo'>Welcome, {user.name}</h2>;
+  //   const useranimate = document.querySelector('.userinfo');
+  //   useranimate && useranimate.classList.add('usanimate');
+  // }
 
   return (
     <div className="App">
       <div className='Info'>
         <div className='text'>
-            <h2 className="App-header">
-                Jotter
-            </h2>
+            <h2 className="App-header">Jotter</h2>
             <p className='subtext'>Your information assistant</p>
-          <button className='login' onClick={() => loginWithRedirect()}><b>Log In</b></button>
+            <button className='login' onClick={() => loginWithPopup()}><b>Log In</b></button>
           {/* <Link to="/info">Click Here!</Link> */}
         </div>
         {/* <img src={logo} alt='icon'/> */}

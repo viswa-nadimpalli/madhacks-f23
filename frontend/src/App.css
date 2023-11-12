@@ -1,4 +1,5 @@
 
+
 .App {
   text-align: center;
   font-size: calc(10px + 5vmax);
@@ -22,7 +23,14 @@
   opacity: 100;
 }
 
-.login {
+.uploadPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login, .uploadButton {
   height: 5vh;
   margin-top: 1%;
   border-radius: 10px;
@@ -37,6 +45,19 @@
   cursor: pointer;
 }
 
+.uploadStatus {
+  margin-top: 3vh;
+  font-size: calc(10px + 1vmax);
+}
+
+.uploadButton {
+  height: 8vh;
+  width: 30vw;
+  opacity: 100;
+  font-size: calc(10px + 1.25vmax);
+  font-family: "Ubuntu";
+}
+
 html {
   background-image: linear-gradient(to bottom right, rgb(79 70 229), rgb(124 58 237));
   height: 100vh;
@@ -48,6 +69,13 @@ html {
 
 h1 {
   font-size: 3.5vmax;
+}
+
+.userinfo {
+  font-size: 2vmax;
+  color: white;
+  margin-top: 5%;
+  opacity: 0;
 }
 
 .App-header {
@@ -70,20 +98,31 @@ h1 {
 
 .App-header,
 .login,
-.subtext {
+.subtext,
+.userinfo {
   transition: all 0.5s ease;
 }
 
 .App-header.rise-up,
 .login.button-animate,
-.subtext.stanimate {
+.subtext.stanimate,
+.userinfo.usanimate,
+.startedbtn.button-animate {
   transform: translateY(-10vh);
   opacity: 100;
 }
 
-.login.button-animate {
+.login.gone {
+  transform: translateX(-10vh);
+  opacity: 0;
+}
+
+.login.button-animate,
+.startedbtn.button-animate {
   transition-delay: 0.3s; /* Adjust the delay value as needed */
 }
+
+
 
 .subtext.stanimate {
   transition-delay: 0.2s;
