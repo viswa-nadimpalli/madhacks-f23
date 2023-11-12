@@ -20,39 +20,6 @@ def extract():
 
 @app.route('/api/extract_text', methods=['POST'])
 def extract_text():
-    # # Check if a file is present in the request
-    # if 'file' not in request.files:
-    #     return jsonify({'error': 'No file provided'})
-
-    # file = request.files['file']
-
-    # # Check if the file has an allowed extension (e.g., PDF)
-    # allowed_extensions = {'jpg', 'jpeg', 'png'}
-
-    # if '.' not in file.filename or file.filename.rsplit('.', 1)[1].lower() not in allowed_extensions:
-    #     return jsonify({'error': 'Invalid file format'})
-    
-    # try:
-    #     # Save the file to a temporary location
-    #     with NamedTemporaryFile(delete=False, suffix=".jpg") as temp_file:
-    #         file.save(temp_file.name)
-    #         temp_file_path = temp_file.name
-
-    #     # Convert PDF to images using pdf2image
-    #     # images = convert_from_bytes(open(temp_file_path, 'rb').read(), 500)  # Set the DPI as needed
-    #     image = Image.open(temp_file_path)
-    #     # Extract text using Tesseract OCR
-    #     text = pytesseract.image_to_string(image)
-    #     os.remove(temp_file_path)
-    #     return jsonify({'text': text})
-        # with open("output.txt", 'w') as output:
-        #     # Write the string to the file
-        #     output.write(text)
-
-        # return output
-
-    # except Exception as e:
-    #     return jsonify({'error': f'Error processing PDF: {str(e)}'})
     file = request.files['file']
     if '.pdf' in file.filename:
         try:
@@ -96,7 +63,6 @@ def extract_text():
                 file.save(temp_file.name)
                 temp_file_path = temp_file.name
 
-        # Convert PDF to images using pdf2image
         # images = convert_from_bytes(open(temp_file_path, 'rb').read(), 500)  # Set the DPI as needed
             image = Image.open(temp_file_path)
         # Extract text using Tesseract OCR
@@ -108,14 +74,11 @@ def extract_text():
         # if not os.path.exists(file_path):
         #     return jsonify({'error': 'File not found'})
 
-        # Perform OCR using Tesseract
-        # extracted_text = pytesseract.image_to_string(Image.open(file_path))
         # with open("output.txt", 'w') as output:
         #     # Write the string to the file
         #     output.write(extracted_text)
 
         # return output
-        # return jsonify(extracted_text)
 
         except Exception as e:
             return jsonify({'error': f'Error processing image: {str(e)}'})
