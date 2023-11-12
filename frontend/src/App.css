@@ -7,6 +7,10 @@
   transform: translateY(10%);
 }
 
+.text {
+  cursor: default;
+  user-select: none;
+}
 
 .Info {
   display: flex;
@@ -30,6 +34,7 @@
   transform: translateY(10%);
   font-family: "Ubuntu300";
   font-weight: 300;
+  cursor: pointer;
 }
 
 html {
