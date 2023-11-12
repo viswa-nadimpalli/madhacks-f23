@@ -13,6 +13,18 @@ client = OpenAI(api_key = os.getenv("OPENAI_API_KEY"))
 with open('output.txt', 'r', encoding='utf-8') as file:
     content = file.read()
 
+
+# Construct a prompt
+prompt = f"Generate questions and answers based on the following text:\n{content}\n"
+question_type = input("Enter the corresponding number of the type of question:\n1. True/False\n2. Multiple Choice\n3. Short Answer\nResponse: ")
+
+if question_type == "1":
+    prompt += "Make the questions 'True or False'. Fifty percent of the answers should be true, and fifty percent of the answers should be false."
+elif question_type == "2":
+    prompt += "Make the questions 'Multiple Choice'."
+elif question_type == "3":
+    prompt += "Make the questions 'Short Answer'."
+=======
 prompt = ""
 initial_question = input("Enter '1' for questions and '2' for a cheat sheet: ")
 

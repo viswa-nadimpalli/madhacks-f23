@@ -16,8 +16,10 @@ const App = () => {
     loading && loading.classList.add('loadanimate');
 
     return(
+      <div className='bod'>
       <div className="loading-container loadanimate">
         <div className="loading-spinner">Loading<span className="ellipsis">...</span></div>
+      </div>
       </div>
     );
   }
