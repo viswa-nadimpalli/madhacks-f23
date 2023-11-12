@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, send_file, make_response
 from pdf2image import convert_from_bytes
 from flask_cors import CORS
 import pytesseract
@@ -6,6 +6,10 @@ import os
 from PIL import Image
 from tempfile import NamedTemporaryFile
 import fitz
+from reportlab.lib.pagesizes import letter
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.pdfgen import canvas
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -13,6 +17,7 @@ load_dotenv()
 from openai import OpenAI
 
 import sys
+from io import BytesIO
 import os
 
 openai_api_key = os.getenv("OPENAI_API_KEY")
@@ -61,7 +66,32 @@ def questions(output, type):
     else:
         prompt = f"Generate a cheat sheet based on the following text:\n{output}\n"
         response_content = generate_responses(prompt).choices[0].message.content
-        return response_content
+        print("hi")
+        text_to_pdf(response_content, "cheatsheet.pdf")
+        print("hello")
+        return send_file("../cheatsheet.pdf", as_attachment=True)
+
+# converts the generated text to a pdf format for cheatsheet
+def text_to_pdf(text, output_path):
+    doc = SimpleDocTemplate(output_path, pagesize = letter)
+    
+    styles = getSampleStyleSheet()
+    title_style = styles['Title']
+    normal_style = styles['Normal']
+
+    story = []
+
+    title_text = "Jotter Cheat Sheet"
+    title = Paragraph(title_text, title_style)
+    story.append(title)
+
+    story.append(Spacer(1, 12))
+
+    for paragraph in text.split('\n'):
+        story.append(Paragraph(paragraph, normal_style))
+        story.append(Spacer(1, 6))
+
+    doc.build(story)
 
 def generate_responses (prompt):
     return client.chat.completions.create(
@@ -77,6 +107,31 @@ CORS(app)
 # Set the path to the Tesseract OCR executable
 pytesseract.pytesseract.tesseract_cmd = 'backend/tesseract/5.3.3/bin/tesseract'
 
+# @app.route('/generate_pdf')
+# def generate_pdf():
+#     text_to_pdf(response_content, "cheatsheet.pdf")
+
+@app.route('/generate_pdf', methods=['GET'])
+def generate_pdf():
+    pdf_file_path = 'cheatsheet.pdf'
+
+    with open(pdf_file_path, 'rb') as pdf_file:
+        # Read the content of the existing PDF file
+        pdf_content = pdf_file.read()
+
+    # Create a BytesIO buffer and write the PDF content to it
+    pdf_buffer = BytesIO(pdf_content)
+
+    # Create a response object to send the PDF as a file
+    response = send_file(
+        pdf_buffer,
+        download_name='output.pdf',
+        as_attachment=True,
+        mimetype='application/pdf'
+    )
+
+    return response
+
 
 @app.route('/test', methods=['POST'])
 def extract():
@@ -84,12 +139,12 @@ def extract():
 
 @app.route('/api/extract_text/<type>', methods=['POST'])
 def extract_text(type):
-
     file = request.files['file']
     if '.pdf' in file.filename:
         try:
         # Assuming you're sending a PDF file in the request
             uploaded_file = request.files['file']
+            
         
         # Save the uploaded file
             pdf_path = 'uploaded_file.pdf'
@@ -105,7 +160,7 @@ def extract_text(type):
 
         # return output
             # return text
-            return questions(text, type+"") + ""
+            return questions(text, type+"")
             
             
     
@@ -137,7 +192,7 @@ def extract_text(type):
             text = pytesseract.image_to_string(image)
             os.remove(temp_file_path)
             # return text
-            return questions(text, type+"")+""
+            return questions(text, type+"")
 
         # Check if the file exists
         # if not os.path.exists(file_path):
@@ -162,6 +217,7 @@ def pdf_to_text(pdf_path):
     return text
 
 if __name__ == '__main__':
+    # app.run(host='localhost', port=3001, debug=True)
     app.run(debug=True)
 
 
