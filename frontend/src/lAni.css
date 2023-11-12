@@ -1,0 +1,50 @@
+/* YourComponent.css */
+.loading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  .loading-spinner {
+    color: white;
+    font-size: 4vmax;
+    font-family: "Ubuntu";
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .ellipsis {
+    animation: ellipsis-animation 1s infinite steps(4);
+  }
+  
+  @keyframes ellipsis-animation {
+    to {
+        transform: translateY(-1.2em);
+      }
+  }
+.loading-container {
+  transition: all 0.5s ease;
+}
+
+
+.loading-container.loadanimate {
+  animation: loadinganimation 2s infinite;
+}
+
+@keyframes loadinganimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.login.button-animate {
+  transition-delay: 0.3s; /* Adjust the delay value as needed */
+}
+
+.subtext.stanimate {
+  transition-delay: 0.2s;
+}
