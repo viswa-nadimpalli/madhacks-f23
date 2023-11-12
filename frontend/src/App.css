@@ -64,6 +64,15 @@
   font-family: "Ubuntu";
 }
 
+.chooseButton {
+  height: 8vh;
+  width: 30vw;
+  opacity: 100;
+  color: white;
+  font-size: calc(10px + 1.25vmax);
+  font-family: "Ubuntu";
+}
+
 html {
   background-image: linear-gradient(to bottom right, rgb(62, 55, 189), rgb(142, 87, 237));
   height: 100vh;
@@ -192,4 +201,6 @@ h1 {
 
 #just-line-break {
   white-space: pre-line;
+  color: white;
+  font-family: "Ubuntu";
 }

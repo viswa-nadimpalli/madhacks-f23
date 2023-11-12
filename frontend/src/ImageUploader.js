@@ -91,7 +91,7 @@ const ImageUploader = () => {
     return (
       <div className="uploadPage">
 
-        <input className="uploadButton" type="file" id="fileInput" onChange={handleFileChange}/>
+        <input className="chooseButton" type="file" id="fileInput" onChange={handleFileChange}/>
         <div class="dropdown">
           <button id="dropdown">Options</button>
           <div class="dropdown-content">

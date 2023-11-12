@@ -32,7 +32,7 @@ def questions(output, type):
 
     # Construct a prompt
     if type != "4":
-        prompt = f"Generate questions and answers based on the following text:\n{output}\n"
+        prompt = f"Generate 10 questions and answers based on the following text:\n{output}\n"
         # question_type = input("Enter the corresponding number of the type of question:\n1. True/False\n2. Multiple Choice\n3. Short Answer\nResponse: ")
         question_type = type
         if question_type == "1":
