@@ -1,7 +1,7 @@
 from openai import OpenAI
 import sys
 
-client = OpenAI(api_key="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")
+client = OpenAI(api_key="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")
 
 with open('output.txt', 'r', encoding='utf-8') as file:
     content = file.read()
@@ -11,7 +11,7 @@ prompt = f"Generate questions and answers based on the following text:\n{content
 question_type = input("Enter the corresponding number of the type of question:\n1. True/False\n2. Multiple Choice\n3. Short Answer\nResponse: ")
 
 if question_type == "1":
-    prompt += "Make the questions 'True/False'."
+    prompt += "Make the questions 'True/False'. Make sure to randomize the true and falses."
 elif question_type == "2":
     prompt += "Make the questions 'Multiple Choice'."
 elif question_type == "3":
