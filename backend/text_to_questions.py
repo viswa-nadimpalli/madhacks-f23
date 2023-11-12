@@ -1,3 +1,8 @@
+# installs required for this file:
+# pip install openai
+# pip install python-dotenv
+# pip install reportlab
+
 # import statements
 from dotenv import load_dotenv
 load_dotenv()
@@ -9,7 +14,6 @@ import sys
 import os
 
 client = OpenAI(api_key = os.getenv("OPENAI_API_KEY"))
-
 with open('output.txt', 'r', encoding='utf-8') as file:
     content = file.read()
 
@@ -17,7 +21,7 @@ prompt = ""
 initial_question = input("Enter '1' for questions and '2' for a cheat sheet: ")
 
 
-
+# inputs prompt and retrieves response from gpt-3
 def generate_responses (prompt):
     return client.chat.completions.create(
         messages = [
@@ -26,38 +30,30 @@ def generate_responses (prompt):
         model = "gpt-3.5-turbo"
     )
 
-
-def text_to_pdf_styled(text, output_path):
-    # Create a SimpleDocTemplate
-    doc = SimpleDocTemplate(output_path, pagesize=letter)
+# converts the generated text to a pdf format for cheatsheet
+def text_to_pdf(text, output_path):
+    doc = SimpleDocTemplate(output_path, pagesize = letter)
     
-    # Get sample styles
     styles = getSampleStyleSheet()
     title_style = styles['Title']
     normal_style = styles['Normal']
 
-    # Build the story with title and paragraphs
     story = []
 
-    # Add title
     title_text = "Jotter Cheat Sheet"
     title = Paragraph(title_text, title_style)
     story.append(title)
-    
-    # Add space after title
+
     story.append(Spacer(1, 12))
 
-    # Add paragraphs with styles
     for paragraph in text.split('\n'):
         story.append(Paragraph(paragraph, normal_style))
-        # Add space between paragraphs
         story.append(Spacer(1, 6))
-    
-    # Build the PDF
+
     doc.build(story)
 
 
-
+# prompt based on request (questions/cheatsheet)
 if initial_question == "1":
     prompt = f"Generate questions and answers based on the following text:\n{content}\n"
     question_type = input("Enter the corresponding number of the type of question:\n1. True/False\n2. Multiple Choice\n3. Short Answer\nResponse: ")
@@ -90,7 +86,7 @@ elif initial_question == "2":
     prompt = f"Generate a cheat sheet based on the following text:\n{content}\nDo not start the sheet with a 'Cheat Sheet' title"
     response_content = generate_responses(prompt).choices[0].message.content
     print(response_content)
-    text_to_pdf_styled(response_content, "cheatsheet.pdf")
+    text_to_pdf(response_content, "cheatsheet.pdf")
 else:
     print("Invalid Input")
     sys.exit(1)
