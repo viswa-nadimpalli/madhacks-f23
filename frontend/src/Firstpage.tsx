@@ -3,6 +3,7 @@ import logo from './imgs/graphic.png';
 import './App.css';
 import { useAuth0, Auth0Provider } from "@auth0/auth0-react";
 import './fonts/Ubuntu/Ubuntu-Bold.ttf'
+import { Link } from 'react-router-dom'
 // ReactDOM.render(
 //   <React.StrictMode>
 //     <Auth0ProviderWithHistory>
@@ -13,11 +14,11 @@ import './fonts/Ubuntu/Ubuntu-Bold.ttf'
 // );
 
 
-const LoginButton = () => {
-  const { loginWithRedirect } = useAuth0();
+// const LoginButton = () => {
+//   const { loginWithRedirect } = useAuth0();
 
-  return <button onClick={() => loginWithRedirect()}>Log In</button>;
-};
+//   return <button onClick={() => loginWithRedirect()}>Log In</button>;
+// };
 
 
 const Login = () => {
@@ -40,11 +41,12 @@ const Login = () => {
     <div className="App">
       <div className='Info'>
         <div className='text'>
-          <h2 className="App-header">
-            Jotter
-          </h2>
-          <p className='subtext'>Your information assistant</p>
+            <h2 className="App-header">
+                Jotter
+            </h2>
+            <p className='subtext'>Your information assistant</p>
           <button className='login' onClick={() => loginWithRedirect()}><b>Log In</b></button>
+          {/* <Link to="/info">Click Here!</Link> */}
         </div>
         {/* <img src={logo} alt='icon'/> */}
         <h1>Imagine an image is here lmao</h1>
