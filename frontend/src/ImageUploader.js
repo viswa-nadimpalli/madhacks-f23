@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import GeneratePDFPage from './GeneratePDFPage';
 import { useAuth0, Auth0Provider } from "@auth0/auth0-react";
+import { Link } from 'react-router-dom';
 import userEvent from "@testing-library/user-event";
 import { FileUploader } from "react-drag-drop-files";
 
@@ -42,17 +43,6 @@ const ImageUploader = () => {
 
   
   const dlbtn = document.getElementById('dnldButton');
-
-  if (dlbtn) {
-    if (succeeded == 1) {
-      dlbtn && dlbtn.classList.remove('gone')
-      console.log("setVisible!")
-    }
-    else {
-      dlbtn && dlbtn.classList.add('gone')
-      console.log("setHIDE!")
-    }
-  }
   const handleUploadClick = async (e) => {
     console.log("handleUploadClick called");
     e.preventDefault();
@@ -92,21 +82,28 @@ const ImageUploader = () => {
       
       // Check if the request was successful (status code 2xx)
       if (response.ok) {
+        const data = await response.json();
+        setUploadStatus(`${JSON.stringify(data)}`);
         dataExp = await response.text();
         if (type1=="4"){
-          document.getElementById('just-line-break').innerHTML = "PDF Success!"
-
+          document.getElementById('just-line-break').innerHTML = "PDF Success!";
           succeeded = 1;
-          dlbtn && dlbtn.classList.remove('gone')
+          dlbtn && dlbtn.classList.remove('gone');
+          console.log('satjhfuioahfa');
           // document.getElementById("downloadButton").style.visibility="‌​visible";
         } else {
           // document.getElementById('just-line-break').innerHTML = data +""
           document.getElementById("just-line-break").innerHTML = "Done!!!";
+          document.getElementById("newlnk");
+          // const lkn = document.getElementById("newlnk");
+          // lkn.setAttribute('to', `/quiz/${uploadStatus}`);
+          // lkn.innerHTML = "Click here!";
+
           var encodedData = encodeURIComponent(dataExp);
           window.location.href = 'test.tsx?data=' + encodedData;
         }
         
-      //   setUploadStatus(data+"");
+        // setUploadStatus(data+"");
       } else {
         setUploadStatus(`Upload failed. Error: ${response.statusText}`);
       }
@@ -114,6 +111,13 @@ const ImageUploader = () => {
       setUploadStatus(`Upload 2 failed. Error: ${error}`);
     }
   };
+
+  if (dlbtn) {
+    if (succeeded === 1) {
+      dlbtn && dlbtn.classList.remove('gone');
+      console.log("setVisible!");
+    }
+  }
 
 
   const { isAuthenticated, user } = useAuth0();
@@ -130,7 +134,7 @@ const ImageUploader = () => {
       <div className="wrapper">
       <div className="uploadPage">
       <h1>Welcome, {user.name.split(' ')[0]}</h1>
-        <input className="fileBtn" type="file" id="fileInput" onChange={handleFileChange}/>        <div class="dropdown">
+        <input className="fileBtn" type="file" id="fileInput" onChange={handleFileChange}/>        <div className="dropdown">
           <button id="dropdown">Options</button>
           <div class="dropdown-content">
             <a href="#" onClick={click1}>True or False</a>
@@ -142,6 +146,8 @@ const ImageUploader = () => {
         <button className="uploadButton" onClick={handleUploadClick}>Upload File</button>
         <GeneratePDFPage />
         <div className="uploadPage" id="just-line-break"></div>
+        {/* <Link id="newlnk"></Link> */}
+        {/* <p>{uploadStatus}</p> */}
       </div>
       </div>
 
