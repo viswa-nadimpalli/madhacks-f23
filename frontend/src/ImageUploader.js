@@ -41,21 +41,35 @@ const ImageUploader = () => {
       
       // Check if the request was successful (status code 2xx)
       if (response.ok) {
-        const data = await response.json();
-        setUploadStatus(`${JSON.stringify(data)}`);
-      } else {
+        const data = await response.text();
+        // setUploadStatus(`${JSON.stringify(data)}`);
+        // const jsonString = JSON.stringify(data);
+        // const formattedString = data.replace(/\n/g, '<br>');
+        // return (
+        //   <div>
+        //     <p>{formattedString}</p>
+        //   </div>
+        // );
+        // setUploadStatus(formattedString); 
+
+        
+        // const formattedString = data.replace(/\n/g, '<br>');
+        document.getElementById('just-line-break').innerHTML = data +""
+      //   setUploadStatus(data+"");
+      // } else {
         setUploadStatus(`Upload failed. Error: ${response.statusText}`);
       }
     } catch (error) {
       setUploadStatus(`Upload 2 failed. Error: ${error}`);
     }
   };
-
+  
   return (
     <div>
       <input type="file" id="fileInput" onChange={handleFileChange}/>
       <button onClick={handleUploadClick}>Upload Image</button>
-      <p>{uploadStatus}</p>
+      {/* <p>{uploadStatus}</p> */}
+      <div id="just-line-break"></div>
     </div>
   );
 };

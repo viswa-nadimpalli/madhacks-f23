@@ -88,3 +88,7 @@ h1 {
 .subtext.stanimate {
   transition-delay: 0.2s;
 }
+
+#just-line-break {
+  white-space: pre-line;
+}

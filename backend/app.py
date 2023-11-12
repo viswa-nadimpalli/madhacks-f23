@@ -16,9 +16,9 @@ import sys
 import os
 
 def questions(output, type):
-    # openai_api_key = os.getenv("OPENAI_API_KEY")
+    openai_api_key = os.getenv("OPENAI_API_KEY")
 
-    client = OpenAI(api_key = "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")
+    client = OpenAI(api_key = openai_api_key)
 
     # with open('output.txt', 'r', encoding='utf-8') as file:
     #     content = file.read()
@@ -59,8 +59,9 @@ def questions(output, type):
         questions = string_parts[0].strip()
         answers = "Answers:\n" + string_parts[1].strip()
 
-        print(questions + "\n")
-        print(answers)
+        # print(questions + "\n")
+        # print(answers)
+        return questions + "\n" + answers
 
 app = Flask(__name__)
 CORS(app)
@@ -95,8 +96,8 @@ def extract_text(type):
         #     output.write(text)
 
         # return output
-            questions(text, type+"")
-            return jsonify({"text": text})
+            # return text
+            return questions(text, type+"") + ""
             
             
     
@@ -127,8 +128,8 @@ def extract_text(type):
         # Extract text using Tesseract OCR
             text = pytesseract.image_to_string(image)
             os.remove(temp_file_path)
-            questions(text, type+"")
-            return jsonify({'text': text})
+            # return text
+            return questions(text, type+"")+""
 
         # Check if the file exists
         # if not os.path.exists(file_path):
