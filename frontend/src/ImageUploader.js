@@ -15,7 +15,7 @@ const ImageUploader = () => {
     e.preventDefault();
     try {
       // URL of your Flask API endpoint
-      const apiUrl = "http://127.0.0.1:5000/api/extract_text_image";
+      const apiUrl = "http://127.0.0.1:5000/api/extract_text";
 
       // File path to be sent in the POST request
       const fileInput = document.getElementById("fileInput");

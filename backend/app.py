@@ -18,8 +18,8 @@ pytesseract.pytesseract.tesseract_cmd = 'backend/tesseract/5.3.3/bin/tesseract'
 def extract():
     return "hello"
 
-@app.route('/api/extract_text_image', methods=['POST'])
-def extract_text_image():
+@app.route('/api/extract_text', methods=['POST'])
+def extract_text():
     # # Check if a file is present in the request
     # if 'file' not in request.files:
     #     return jsonify({'error': 'No file provided'})
@@ -119,30 +119,6 @@ def extract_text_image():
 
         except Exception as e:
             return jsonify({'error': f'Error processing image: {str(e)}'})
-    
-@app.route('/api/extract_text_pdf', methods=['POST'])
-def extract_text_pdf():
-    try:
-        # Assuming you're sending a PDF file in the request
-        uploaded_file = request.files['file']
-        
-        # Save the uploaded file
-        pdf_path = 'uploaded_file.pdf'
-        uploaded_file.save(pdf_path)
-
-        # Extract text from the PDF
-        text = pdf_to_text(pdf_path)
-        os.remove(pdf_path)
-
-        # with open("output.txt", 'w') as output:
-        #     # Write the string to the file
-        #     output.write(text)
-
-        # return output
-        return jsonify({"text": text})
-    
-    except Exception as e:
-        return jsonify({"error": str(e)})
 
 def pdf_to_text(pdf_path):
     text = ""
