@@ -44,7 +44,6 @@ const ImageUploader = () => {
       // File path to be sent in the POST request
       const fileInput = document.getElementById("fileInput");
       const file = fileInput.files[0];
-      // document.getElementById("downloadButton").style.visibility="‌hidden";
       
       // const filePath = "frontend/testing.png";
       if(type1=="0"){
