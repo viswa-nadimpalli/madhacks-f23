@@ -2,6 +2,9 @@
 from dotenv import load_dotenv
 load_dotenv()
 from openai import OpenAI
+from reportlab.lib.pagesizes import letter
+from reportlab.platypus import SimpleDocTemplate, Paragraph
+from reportlab.lib.styles import getSampleStyleSheet
 import sys
 import os
 
@@ -22,6 +25,23 @@ def generate_responses (prompt):
         ],
         model = "gpt-3.5-turbo"
     )
+
+
+def text_to_pdf_styled(text, output_path):
+    # Create a SimpleDocTemplate
+    doc = SimpleDocTemplate(output_path, pagesize=letter)
+    
+    # Get sample styles
+    styles = getSampleStyleSheet()
+    normal_style = styles['Normal']
+
+    # Build the story with paragraphs
+    story = []
+    for paragraph in text.split('\n'):
+        story.append(Paragraph(paragraph, normal_style))
+    
+    # Add the story to the document
+    doc.build(story)
 
 
 
@@ -57,6 +77,7 @@ elif initial_question == "2":
     prompt = f"Generate a cheat sheet based on the following text:\n{content}\n"
     response_content = generate_responses(prompt).choices[0].message.content
     print(response_content)
+    text_to_pdf_styled(response_content, "od.pdf")
 else:
     print("Invalid Input")
     sys.exit(1)
