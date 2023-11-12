@@ -7,6 +7,7 @@ import userEvent from "@testing-library/user-event";
 import { FileUploader } from "react-drag-drop-files";
 
 const fileTypes = ["JPG", "PNG", "PDF"];
+dataExp;
 
 var type1 = "0";
 const ImageUploader = () => {
@@ -83,6 +84,7 @@ const ImageUploader = () => {
       if (response.ok) {
         const data = await response.json();
         setUploadStatus(`${JSON.stringify(data)}`);
+        dataExp = await response.text();
         if (type1=="4"){
           document.getElementById('just-line-break').innerHTML = "PDF Success!";
           succeeded = 1;
@@ -96,7 +98,9 @@ const ImageUploader = () => {
           // const lkn = document.getElementById("newlnk");
           // lkn.setAttribute('to', `/quiz/${uploadStatus}`);
           // lkn.innerHTML = "Click here!";
-                    
+
+          var encodedData = encodeURIComponent(dataExp);
+          window.location.href = 'test.tsx?data=' + encodedData;
         }
         
         // setUploadStatus(data+"");
@@ -132,7 +136,7 @@ const ImageUploader = () => {
       <h1>Welcome, {user.name.split(' ')[0]}</h1>
         <input className="fileBtn" type="file" id="fileInput" onChange={handleFileChange}/>        <div className="dropdown">
           <button id="dropdown">Options</button>
-          <div className="dropdown-content">
+          <div class="dropdown-content">
             <a href="#" onClick={click1}>True or False</a>
             <a href="#" onClick={click2}>Multiple Choice</a>
             <a href="#" onClick={click3}>Short Answer</a>
