@@ -16,7 +16,7 @@ const ImageUploader = () => {
 
     try {
       // URL of your Flask API endpoint
-      const apiUrl = "http://127.0.0.1:5000/api/extract_text/3";
+      const apiUrl = "http://127.0.0.1:5000/api/extract_text/4";
       // setUploadStatus(`Upload 3 failed. Error: `);
       // File path to be sent in the POST request
       const fileInput = document.getElementById("fileInput");
