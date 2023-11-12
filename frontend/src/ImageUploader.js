@@ -52,7 +52,6 @@ const ImageUploader = () => {
       console.log("setHIDE!")
     }
   }
-
   const handleUploadClick = async (e) => {
     console.log("handleUploadClick called");
     e.preventDefault();
@@ -95,6 +94,7 @@ const ImageUploader = () => {
         const data = await response.text();
         if (type1=="4"){
           document.getElementById('just-line-break').innerHTML = "PDF Success!"
+
           succeeded = 1;
           dlbtn && dlbtn.classList.remove('gone')
           // document.getElementById("downloadButton").style.visibility="‌​visible";
@@ -110,6 +110,7 @@ const ImageUploader = () => {
       setUploadStatus(`Upload 2 failed. Error: ${error}`);
     }
   };
+
 
   const { isAuthenticated, user } = useAuth0();
 
@@ -127,6 +128,15 @@ const ImageUploader = () => {
         <div className="dropdown">
           <button id="dropdown">Options</button>
           <div className="dropdown-content">
+
+  
+    return (
+      <div className="uploadPage">
+
+        <input className="uploadButton" type="file" id="fileInput" onChange={handleFileChange}/>
+        <div class="dropdown">
+          <button id="dropdown">Options</button>
+          <div class="dropdown-content">
             <a href="#" onClick={click1}>True or False</a>
             <a href="#" onClick={click2}>Multiple Choice</a>
             <a href="#" onClick={click3}>Short Answer</a>
@@ -138,6 +148,7 @@ const ImageUploader = () => {
         <div className="uploadPage" id="just-line-break"></div>
       </div>
       </div>
+
     );
   
 };
