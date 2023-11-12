@@ -142,6 +142,28 @@ h1 {
 .dropdown {
   position: relative;
   display: inline-block;
+  background-color: #cccccc; /* Button color */
+  color: #ffffff; /* Text color */
+  border: none;
+  cursor: pointer;
+  height: 8vh;
+  width: 30vw;
+  font-size: calc(10px + 1.25vmax);
+  font-family: "Ubuntu";
+  color: #000000
+  
+}
+
+#dropdown {
+  background-color: #cccccc; /* Button color */
+  color: #ffffff; /* Text color */
+  border: none;
+  cursor: pointer;
+  height: 8vh;
+  width: 30vw;
+  font-size: calc(10px + 1.25vmax);
+  font-family: "Ubuntu";
+  color: #000000
 }
 
 .dropdown-content {
