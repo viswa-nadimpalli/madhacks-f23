@@ -30,6 +30,8 @@ const Login = () => {
     const text = document.querySelector('.App-header');
     const lgbutton = document.querySelector('.login');
     const st = document.querySelector('.subtext');
+    const logoimg = document.querySelector('.logo');
+    logoimg && logoimg.classList.add('rise-up')
     info && info.classList.add('animated');
     text && text.classList.add('rise-up');
     lgbutton && lgbutton.classList.add('button-animate');
@@ -53,8 +55,8 @@ const Login = () => {
             <button className='login' onClick={() => loginWithPopup()}><b>Log In</b></button>
           {/* <Link to="/info">Click Here!</Link> */}
         </div>
-        {/* <img src={logo} alt='icon'/> */}
-        <h1>Imagine an image is here lmao</h1>
+        <img className='logo' src={logo} alt='icon'/>
+        {/* <h1>Imagine an image is here lmao</h1> */}
       </div>
     </div>
   );
