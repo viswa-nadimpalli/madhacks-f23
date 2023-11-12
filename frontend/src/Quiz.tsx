@@ -57,36 +57,6 @@ const QuizGenerator: React.FC = () => {
     <div className='top'>
         <div className='quizStuff'>
         <h1 id='startText'>Quiz Generator</h1>
-        <div>
-            <label>
-            Number of True/False Questions:<br></br>
-            <input
-                type="number" 
-                value={numTrueFalse}
-                onChange={(e) => setNumTrueFalse(parseInt(e.target.value, 10))}
-            />
-            </label>
-        </div>
-        <div>
-            <label>
-            Number of Multiple Choice Questions:<br></br>
-            <input
-                type="number"
-                value={numMultipleChoice}
-                onChange={(e) => setNumMultipleChoice(parseInt(e.target.value, 10))}
-            />
-            </label>
-        </div>
-        <div>
-            <label>
-            Number of Short Answer Questions:<br></br>
-            <input
-                type="number"
-                value={numShortAnswer}
-                onChange={(e) => setNumShortAnswer(parseInt(e.target.value, 10))}
-            />
-            </label>
-        </div>
         <button className='genButton' onClick={generateQuiz}>Generate Quiz</button>
 
         <div>

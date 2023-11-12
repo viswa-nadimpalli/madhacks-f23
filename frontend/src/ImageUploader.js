@@ -1,6 +1,12 @@
 // ImageUploader.js
 import React, { useState } from "react";
 import GeneratePDFPage from './GeneratePDFPage';
+import { useAuth0, Auth0Provider } from "@auth0/auth0-react";
+import userEvent from "@testing-library/user-event";
+import { FileUploader } from "react-drag-drop-files";
+
+const fileTypes = ["JPG", "PNG", "PDF"];
+
 var type1 = "0";
 const ImageUploader = () => {
   const [uploadStatus, setUploadStatus] = useState(""); // State to track upload status
@@ -31,9 +37,26 @@ const ImageUploader = () => {
     document.getElementById("dropdown").innerHTML = "Cheat Sheet";
   }
 
+  let succeeded = 0;
+
+  
+  const dlbtn = document.getElementById('dnldButton');
+
+  if (dlbtn) {
+    if (succeeded == 1) {
+      dlbtn && dlbtn.classList.remove('gone')
+      console.log("setVisible!")
+    }
+    else {
+      dlbtn && dlbtn.classList.add('gone')
+      console.log("setHIDE!")
+    }
+  }
+
   const handleUploadClick = async (e) => {
     console.log("handleUploadClick called");
     e.preventDefault();
+
 
     try {
       // URL of your Flask API endpoint
@@ -72,6 +95,8 @@ const ImageUploader = () => {
         const data = await response.text();
         if (type1=="4"){
           document.getElementById('just-line-break').innerHTML = "PDF Success!"
+          succeeded = 1;
+          dlbtn && dlbtn.classList.remove('gone')
           // document.getElementById("downloadButton").style.visibility="‌​visible";
         } else {
           document.getElementById('just-line-break').innerHTML = data +""
@@ -86,12 +111,19 @@ const ImageUploader = () => {
     }
   };
 
+  const { isAuthenticated, user } = useAuth0();
+
+  if (!user || !isAuthenticated) {
+    window.location.href = '/';
+  }
 
   
     return (
+      <div className="wrapper">
       <div className="uploadPage">
-
-        <input className="uploadButton" type="file" id="fileInput" onChange={handleFileChange}/>
+        <h1>Welcome, {user.name.split(' ')[0]}</h1>
+        <input className="fileBtn" type="file" id="fileInput" onChange={handleFileChange}/>
+        {/* <FileUploader handleChange={handleFileChange} name="file" types={fileTypes} /> */}
         <div className="dropdown">
           <button id="dropdown">Options</button>
           <div className="dropdown-content">
@@ -104,6 +136,7 @@ const ImageUploader = () => {
         <button className="uploadButton" onClick={handleUploadClick}>Upload File</button>
         <GeneratePDFPage />
         <div className="uploadPage" id="just-line-break"></div>
+      </div>
       </div>
     );
   

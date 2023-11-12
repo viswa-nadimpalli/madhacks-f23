@@ -21,7 +21,6 @@ import { Link } from 'react-router-dom'
 // };
 
 const Login = () => {
-  const { loginWithPopup, isAuthenticated, user } = useAuth0();
 
 
   useEffect(() => {
@@ -46,13 +45,29 @@ const Login = () => {
   //   useranimate && useranimate.classList.add('usanimate');
   // }
 
+const { loginWithPopup } = useAuth0();
+
+  const handleLog = async () => {
+    try {
+
+      await loginWithPopup();
+
+
+      window.location.href = '/info';
+
+    }
+    catch (error) {
+      console.error('Login failed:', error);
+    }
+  }
+
   return (
     <div className="App">
       <div className='Info'>
         <div className='text'>
             <h2 className="App-header">Jotter</h2>
             <p className='subtext'>Your information assistant</p>
-            <button className='login' onClick={() => loginWithPopup()}><b>Log In</b></button>
+            <button className='login' onClick={handleLog}><b>Log In</b></button>
           {/* <Link to="/info">Click Here!</Link> */}
         </div>
         <img className='logo' src={logo} alt='icon'/>

@@ -9,7 +9,7 @@ const GeneratePDFPage = () => {
 
   return (
     <div>
-      <button className="downloadButton" onClick={redirectToPDF}>Download PDF</button>
+      <button id='dnldButton' className="downloadButton gone" onClick={redirectToPDF}>Download PDF</button>
     </div>
   );
 };
