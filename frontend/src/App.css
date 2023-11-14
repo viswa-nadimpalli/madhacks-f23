@@ -139,32 +139,6 @@ h1 {
   transition: all 0.5s ease;
 }
 
-.App-header,
-.login,
-.subtext,
-.userinfo,
-.logo {
-  transition: all 0.5s ease;
-}
-
-.App-header.rise-up,
-.login.button-animate,
-.subtext.stanimate,
-.userinfo.usanimate,
-.startedbtn.button-animate,
-.logo.rise-up {
-  transform: translateY(-10vh);
-  opacity: 100;
-}
-
-
-.login.button-animate {
-  transition-delay: 0.3s; /* Adjust the delay value as needed */
-}
-
-.subtext.stanimate {
-  transition-delay: 0.2s;
-}
 
 .downloadButton {
   height: 8vh;

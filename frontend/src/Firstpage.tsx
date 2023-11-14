@@ -4,6 +4,7 @@ import './App.css';
 import { useAuth0, Auth0Provider } from "@auth0/auth0-react";
 import './fonts/Ubuntu/Ubuntu-Bold.ttf'
 import { Link } from 'react-router-dom'
+import './firstpage.css'
 // ReactDOM.render(
 //   <React.StrictMode>
 //     <Auth0ProviderWithHistory>

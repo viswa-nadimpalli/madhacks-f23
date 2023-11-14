@@ -1,0 +1,34 @@
+@keyframes slideInFromBottom {
+    100% {
+      transform: translateY(-10vh);
+      opacity: 100;
+    }
+}
+
+
+.App-header,
+.login,
+.subtext,
+.userinfo,
+.logo {
+  transition: all 0.5s ease;
+}
+
+.App-header,
+.login,
+.subtext,
+.userinfo,
+.startedbtn,
+.logo {
+  animation:0.5s ease 0s 1 slideInFromBottom;
+  animation-fill-mode: forwards;
+}
+
+
+.login.button-animate {
+  transition-delay: 0.3s; /* Adjust the delay value as needed */
+}
+
+.subtext.stanimate {
+  transition-delay: 0.2s;
+}
