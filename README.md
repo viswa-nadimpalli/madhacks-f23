@@ -10,4 +10,4 @@ This was designed with students in mind, in order to help them study and parse c
 but we hope to expand its use case, with the ability to summarize digital documents being a very general and helpful tool.
 
 
-<img src="https://drive.google.com/file/d/1MqkfqFqOd9FJhWE4KNKQ1-5Clr2JD_Di/view?usp=sharing">
+![](https://drive.google.com/file/d/1MqkfqFqOd9FJhWE4KNKQ1-5Clr2JD_Di/view?usp=sharing)
