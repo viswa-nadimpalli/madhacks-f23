@@ -8,5 +8,9 @@ import os
 def getClient():
     mongodbkey = os.getenv("MONGODBKEY")
     client = MongoClient(mongodbkey)
-    return client
+    db = client['madhacks']
+    people = db.people
+    ppl = people.find_one({ "name.last": "Olig", "name.first": "Henry" })
+    return ppl
 
+print(getClient())

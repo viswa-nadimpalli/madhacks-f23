@@ -80,7 +80,7 @@ def questions(output, type, userID = -1):
                     { "id": userID }
                     ,
                     { "$set": { dt: questions + "\n" + answers } }
-                )                
+                )
                 
             return questions + "\n" + answers
     else:

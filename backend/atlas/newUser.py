@@ -5,10 +5,10 @@ import connect
 from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 
-app = Flask(__name__)
-CORS(app)
+# app = Flask(__name__)
+# CORS(app)
 
-@app.route('/api/newUser/<InputName>/<userID>', methods=['POST'])
+# @app.route('/api/newUser/<InputName>/<userID>', methods=['POST'])
 
 
 def newUser(InputName, userID):
@@ -27,4 +27,5 @@ def newUser(InputName, userID):
     return "0"
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # app.run(debug=True)
+    newUser("Sherlock Homes", "0238574132")
