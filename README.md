@@ -9,5 +9,4 @@ Create an app that can take images and PDF's and generate quizzes or summaries o
 This was designed with students in mind, in order to help them study and parse content in lecture slides and content,
 but we hope to expand its use case, with the ability to summarize digital documents being a very general and helpful tool.
 
-
-![](https://drive.google.com/file/d/1MqkfqFqOd9FJhWE4KNKQ1-5Clr2JD_Di/view?usp=sharing)
+![image](https://drive.google.com/uc?export=view&id=1MqkfqFqOd9FJhWE4KNKQ1-5Clr2JD_Di)
