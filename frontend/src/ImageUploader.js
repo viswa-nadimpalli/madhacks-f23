@@ -10,6 +10,9 @@ const fileTypes = ["JPG", "PNG", "PDF"];
 
 var type1 = "0";
 const ImageUploader = () => {
+
+
+  const { isAuthenticated, user } = useAuth0();
   const [uploadStatus, setUploadStatus] = useState(""); // State to track upload status
   const [selectedFile, setSelectedFile] = useState(null);
 
@@ -70,7 +73,13 @@ const ImageUploader = () => {
       document.getElementById('just-line-break').innerHTML = "Loading...";
       // Create a FormData object and append the file
       const formData = new FormData();
-      formData.append("file", file);
+      if (!user || !isAuthenticated) {
+      formData.append("file", file, user.sub);
+      console.log("Successful append line 78");
+      }
+      else {
+        formData.append("file", file, -1);
+      }
       // Make the POST request
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -116,7 +125,7 @@ const ImageUploader = () => {
   }
 
 
-  const { isAuthenticated, user } = useAuth0();
+  
 
   if (!user || !isAuthenticated) {
     window.location.href = '/';

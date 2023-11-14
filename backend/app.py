@@ -10,6 +10,9 @@ from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.pdfgen import canvas
+from atlas import *
+import pymongo
+import datetime
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -22,10 +25,13 @@ import os
 
 openai_api_key = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key = openai_api_key)
-def questions(output, type):
-    
+def questions(output, type, userID = -1):
 
-    
+
+
+    if userID != -1:
+        user = getUser.fetchUser(ID)
+
 
     # with open('output.txt', 'r', encoding='utf-8') as file:
     #     content = file.read()
@@ -60,8 +66,22 @@ def questions(output, type):
             questions = string_parts[0].strip()
             answers = "Answers:\n" + string_parts[1].strip()
 
+
             # print(questions + "\n")
             # print(answers)
+            if userID != -1:
+                client = connect.getClient()
+                db = client.gettingStarted
+                people = db.people
+                x = datetime.datetime.now()
+                dt = x.strftime("%x")+"-"+x.strftime("%X")
+                print('This is error output', file=sys.stderr)
+                people.update_one(
+                    { "id": userID }
+                    ,
+                    { "$set": { dt: questions + "\n" + answers } }
+                )                
+                
             return questions + "\n" + answers
     else:
         prompt = f"Generate a cheat sheet based on the following text:\n{output}\n"

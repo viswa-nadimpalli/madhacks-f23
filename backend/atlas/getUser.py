@@ -4,17 +4,12 @@ from pymongo import MongoClient
 import datetime
 
 
-client = connect.getClient()
 
-
-db = client.gettingStarted
-
-
-people = db.people
-
-def getUser(InputName):
-    fname, lname = InputName.split()
-    return people.find_one({ "name.last": lname, "name.first": fname })
+def fetchUser(ID):
+    client = connect.getClient()
+    db = client.gettingStarted
+    people = db.people
+    return people.find_one({ "id": ID })
 
 
 
