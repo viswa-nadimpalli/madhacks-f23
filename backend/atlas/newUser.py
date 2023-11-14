@@ -20,9 +20,10 @@ def newUser(InputName, userID):
         personDocument = {
         "name": { "first": fname, "last": lname },
         "id": userID,
+        "quizzes": {}
         }
         people.insert_one(personDocument)
-        return "1"
+        return "ok"
     return "0"
 
 if __name__ == '__main__':
