@@ -106,12 +106,14 @@ const ImageUploader = () => {
             formData.append("file", file, user.sub);
             console.log("Successful append line 78");
             const id = user?.sub;
-            const uploadQuizUrl = `http://127.0.0.1:5000/mongo/addQuiz/${id}/${data + ""}`
+            const uploadQuizUrl = `http://127.0.0.1:5000/mongo/add_quiz/${id}/${data}`;
             const uploadQuiz = await fetch(uploadQuizUrl, {
-              method: "POST",
+              mode: "no-cors",
+              method: "GET",
             });
+            console.log(uploadQuiz);
           if (uploadQuiz === "1") {
-            console.log("Successfully uploaded")
+            console.log("Successfully uploaded");
           }
           }
           

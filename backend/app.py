@@ -126,7 +126,7 @@ CORS(app)
 
 
 
-@app.route("/mongo/add_quiz/<userID>/<quizText>", methods=["POST"])
+@app.route("/mongo/add_quiz/<userID>/<quizText>", methods=["GET", "POST"])
 def add_quiz(userID, quizText):
     return atlas.add_quiz(userID, quizText)
 

@@ -1,6 +1,4 @@
 import pymongo
-import connect
-import getUser
 import datetime
 import certifi
 from dotenv import load_dotenv
@@ -44,6 +42,8 @@ def insertQuiz(ID, text):
     return "1"
   except:
     return "0"
+  
+# insertQuiz("google-oauth2|102485158041172712830", "please")
   # except e:
   #   print("An error occured!")
   #   print(e)
