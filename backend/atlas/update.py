@@ -20,25 +20,31 @@ import os
 #   upsert=False)
 
 def insertQuiz(ID, text):
-  ca = certifi.where()
-  # try:
-  # client = connect.getClient()
-  mongodbkey = os.getenv("MONGODBKEY")
-  client = MongoClient(mongodbkey)
-  db = client.gettingStarted
-  people = db.peoples
-  x = datetime.datetime.now()
-  dt = x.strftime("%x")+"-"+x.strftime("%X")
-  # print('This is error output', file=sys.stderr)
-  people.update_one(
-      { "id": ID }
-      ,
-      { "$set": { dt: text } }
-  )
-  return "1"
+  try:
+    ca = certifi.where()
+    # try:
+    # client = connect.getClient()
+    mongodbkey = os.getenv("MONGODBKEY")
+    client = MongoClient(mongodbkey, tls=True)
+    db = client.madhacks
+    people = db.people
+    x = datetime.datetime.now()
+    dt = x.strftime("%x")+"-"+x.strftime("%X")
+    # print('This is error output', file=sys.stderr)
+    currentFiles = people.find_one({ "id": ID })['quizzes']
+    currentFiles[dt] = text
+    people.update_one(
+        { "id": ID }
+        ,
+        { "$set": { "quizzes" : currentFiles } }
+        ,
+        bypass_document_validation=True,
+        upsert=True
+    )
+    return "1"
+  except:
+    return "0"
   # except e:
   #   print("An error occured!")
   #   print(e)
   #   return "0"
-  
-insertQuiz('google-oauth2|102485158041172712830', "gottat test this man")

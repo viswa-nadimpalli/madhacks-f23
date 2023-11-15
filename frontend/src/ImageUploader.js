@@ -102,6 +102,19 @@ const ImageUploader = () => {
           // document.getElementById('just-line-break').innerHTML = data +""
           document.getElementById("just-line-break").innerHTML = "Done!!!";
           document.getElementById("newlnk");
+          if (user && isAuthenticated) {
+            formData.append("file", file, user.sub);
+            console.log("Successful append line 78");
+            const id = user?.sub;
+            const uploadQuizUrl = `http://127.0.0.1:5000/mongo/addQuiz/${id}/${data + ""}`
+            const uploadQuiz = await fetch(uploadQuizUrl, {
+              method: "POST",
+            });
+          if (uploadQuiz === "1") {
+            console.log("Successfully uploaded")
+          }
+          }
+          
           // const lkn = document.getElementById("newlnk");
           // lkn.setAttribute('to', `/quiz/${uploadStatus}`);
           // lkn.innerHTML = "Click here!";
