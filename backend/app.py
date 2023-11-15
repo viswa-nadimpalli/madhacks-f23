@@ -10,7 +10,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.pdfgen import canvas
-from atlas import *
+from atlas import dbmethods as atlas
 import pymongo
 import datetime
 
@@ -29,8 +29,8 @@ def questions(output, type, userID = -1):
 
 
 
-    if userID != -1:
-        user = getUser.fetchUser(ID)
+    # if userID != -1:
+    #     user = getUser.fetchUser(ID)
 
 
     # with open('output.txt', 'r', encoding='utf-8') as file:
@@ -69,18 +69,18 @@ def questions(output, type, userID = -1):
 
             # print(questions + "\n")
             # print(answers)
-            if userID != -1:
-                client = connect.getClient()
-                db = client.gettingStarted
-                people = db.people
-                x = datetime.datetime.now()
-                dt = x.strftime("%x")+"-"+x.strftime("%X")
-                print('This is error output', file=sys.stderr)
-                people.update_one(
-                    { "id": userID }
-                    ,
-                    { "$set": { dt: questions + "\n" + answers } }
-                )
+            # if userID != -1:
+            #     client = connect.getClient()
+            #     db = client.gettingStarted
+            #     people = db.people
+            #     x = datetime.datetime.now()
+            #     dt = x.strftime("%x")+"-"+x.strftime("%X")
+            #     print('This is error output', file=sys.stderr)
+            #     people.update_one(
+            #         { "id": userID }
+            #         ,
+            #         { "$set": { dt: questions + "\n" + answers } }
+            #     )
                 
             return questions + "\n" + answers
     else:
@@ -123,6 +123,13 @@ def generate_responses (prompt):
 
 app = Flask(__name__)
 CORS(app)
+
+
+
+@app.route("/mongo/add_quiz/<userID>/<quizText>", methods=["GET", "POST"])
+def add_quiz(userID, quizText):
+    return atlas.add_quiz(userID, quizText)
+
 
 # Set the path to the Tesseract OCR executable
 pytesseract.pytesseract.tesseract_cmd = 'backend/tesseract/5.3.3/bin/tesseract'

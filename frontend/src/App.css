@@ -2,7 +2,9 @@
   display: none;
 }
 
-
+.bod {
+  overflow: none;
+}
 
 .App {
   text-align: center;

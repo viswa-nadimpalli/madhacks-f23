@@ -4,18 +4,21 @@ import datetime
 import connect
 from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
+import os
 
-# app = Flask(__name__)
-# CORS(app)
+app = Flask(__name__)
+CORS(app)
 
-# @app.route('/api/newUser/<InputName>/<userID>', methods=['POST'])
+@app.route('/api/newUser/<InputName>/<userID>', methods=['POST'])
 
 
 def newUser(InputName, userID):
-    client = connect.getClient()
-    db = client['madhacks']
+    mongodbkey = os.getenv("MONGODBKEY")
+    client = MongoClient(mongodbkey)
+    db = client.madhacks
     people = db.people
     fname, lname = InputName.split()
+    print(InputName)
     if people.find_one({ "name.last": lname, "name.first": fname }) == None:
         personDocument = {
         "name": { "first": fname, "last": lname },
@@ -26,6 +29,7 @@ def newUser(InputName, userID):
         return "ok"
     return "0"
 
+newUser("Sherlock Homes", "0238574132")
+
 if __name__ == '__main__':
-    # app.run(debug=True)
-    newUser("Sherlock Homes", "0238574132")
+    app.run(debug=True)
